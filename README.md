@@ -36,6 +36,8 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 
 - **.NET 6**: Framework para criação de APIs robustas e performáticas.
 - **Entity Framework Core**: ORM para acesso a banco de dados.
+- **AutoMapper**: Pacote adicionado na camada **Application** para mapeamento de objetos entre camadas, facilitando a conversão entre modelos de dados e DTOs.
+- **Swashbuckle.AspNetCore**: Pacote para gerar automaticamente a documentação Swagger da API, facilitando o entendimento e os testes interativos da API.
 - **Swagger**: Para documentação e testes interativos da API.
 - **Docker** (opcional): Para facilitar a containerização e o deploy da aplicação.
 
@@ -54,8 +56,10 @@ Certifique-se de que você tem as seguintes ferramentas instaladas em seu ambien
 
 1. Clone o repositório:
 
+   ```bash
    git clone https://github.com/seu-usuario/WebApiMinimal.git
    cd WebApiMinimal
+   ```
 
 2. Instale as dependências do projeto:
 
@@ -63,17 +67,37 @@ Certifique-se de que você tem as seguintes ferramentas instaladas em seu ambien
 
    Ou, se estiver utilizando a linha de comando, execute:
 
+   ```bash
    dotnet restore
+   ```
 
-3. Configure as variáveis de ambiente ou edite o arquivo `appsettings.json` conforme necessário.
+3. Instale os pacotes adicionais **AutoMapper** e **Swashbuckle.AspNetCore**:
 
-4. Para rodar o projeto localmente, use o seguinte comando:
+   - Para **AutoMapper**, execute o comando:
 
+     ```bash
+     dotnet add package AutoMapper
+     ```
+
+   - Para **Swashbuckle.AspNetCore**, execute o comando:
+
+     ```bash
+     dotnet add package Swashbuckle.AspNetCore
+     ```
+
+4. Configure as variáveis de ambiente ou edite o arquivo `appsettings.json` conforme necessário.
+
+5. Para rodar o projeto localmente, use o seguinte comando:
+
+   ```bash
    dotnet run
+   ```
 
    Ou, se estiver usando containers Docker, execute:
 
+   ```bash
    docker-compose up
+   ```
 
 ---
 
@@ -95,11 +119,15 @@ Este projeto pode ser utilizado para interagir com a API de forma simples. Abaix
 
 **Requisição para cadastrar uma entidade**:
 
+```bash
 curl -X POST http://localhost:5000/api/entidade -H "Content-Type: application/json" -d '{"nome": "Entidade Exemplo"}'
+```
 
 **Requisição para consultar uma entidade**:
 
+```bash
 curl -X GET http://localhost:5000/api/entidade/1 -H "Content-Type: application/json"
+```
 
 ---
 
@@ -113,10 +141,7 @@ src/
 ├── Application/        # Camada de lógica de negócios (serviços, casos de uso)
 ├── Domain/             # Camada de domínio (entidades, agregados, repositórios)
 ├── Infrastructure/     # Camada de infraestrutura (implementações concretas, banco de dados)
-    InMemory
 └── Shared/             # Camada compartilhada (DTOs, helpers, interfaces)
-   dotnet add package AutoMapper
-   dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection
 
 ```
 
@@ -138,7 +163,7 @@ Este projeto exige algumas configurações adicionais, como variáveis de ambien
 
 1. No arquivo `appsettings.json`, adicione suas configurações de banco de dados, por exemplo:
 
-```
+```json
 {
   "ConnectionStrings": {
     "DefaultConnection": "Server=localhost;Database=webapi_db;Trusted_Connection=True;"
@@ -148,7 +173,7 @@ Este projeto exige algumas configurações adicionais, como variáveis de ambien
 
 2. Para configuração de variáveis de ambiente, adicione as seguintes variáveis ao seu ambiente de execução:
 
-```
+```bash
 DATABASE_URL=Server=localhost;Database=webapi_db;Trusted_Connection=True;
 ```
 
@@ -174,8 +199,5 @@ Este projeto está licenciado sob a Licença **MIT**. Consulte o arquivo LICENSE
 
 ## Contato
 
-Caso tenha dúvidas ou sugestões, entre em contato:
-
-- **Email**: contato@dominio.com
-- **LinkedIn**: https://www.linkedin.com/in/usuario
-- **GitHub**: https://github.com/usuario
+- **Email**: contato@dopme.io
+- **LinkedIn**: https://www.linkedin.com/in/daniloopinheiro
