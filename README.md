@@ -113,7 +113,11 @@ src/
 ├── Application/        # Camada de lógica de negócios (serviços, casos de uso)
 ├── Domain/             # Camada de domínio (entidades, agregados, repositórios)
 ├── Infrastructure/     # Camada de infraestrutura (implementações concretas, banco de dados)
+    InMemory
 └── Shared/             # Camada compartilhada (DTOs, helpers, interfaces)
+   dotnet add package AutoMapper
+   dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection
+
 ```
 
 ### Detalhamento das Camadas:

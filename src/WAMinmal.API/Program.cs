@@ -1,9 +1,22 @@
 using Microsoft.OpenApi.Models;
+using WAMinmal.API.Endpoints;
+using WAMinmal.Application.Mappings;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Adicionando AutoMapper ao DI container
+//builder.Services.AddAutoMapper(typeof(MappingProfile)); // Registra o perfil de mapeamento
 
+// Adiciona o serviço CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+        policy.AllowAnyOrigin()  // Permite qualquer origem (você pode restringir isso depois)
+              .AllowAnyMethod()   // Permite qualquer método HTTP (GET, POST, etc.)
+              .AllowAnyHeader()); // Permite qualquer cabeçalho
+});
+
+// Add services to the container.
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -24,6 +37,9 @@ builder.Services.AddSwaggerGen(options =>
 
 var app = builder.Build();
 
+// Aplicar a política CORS para permitir qualquer origem, método e cabeçalho
+app.UseCors("AllowAll");
+
 // Configuração do Swagger
 if (app.Environment.IsDevelopment())
 {
@@ -41,4 +57,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.MapWeatherForecastEndpoints();
 app.Run();
