@@ -1,32 +1,32 @@
-# Descrição
+# WebApiMinimal
 
-Este é um projeto de software que tem como objetivo [inserir objetivo principal do projeto, ex: resolver um problema específico, automatizar um processo, fornecer uma funcionalidade]. Ele foi desenvolvido utilizando [listar tecnologias e ferramentas principais, ex: .NET, RabbitMQ, MongoDB, etc.] e segue uma arquitetura [ex: MVC, DDD, microserviços, etc.] para garantir [escabilidade, desempenho, manutenibilidade, etc.].
+Este projeto consiste em uma API simples, desenvolvida utilizando **.NET 6**, com uma estrutura baseada em **Domain-Driven Design (DDD)**. Ele visa demonstrar boas práticas de organização de código e arquitetura de sistemas, com foco na separação de responsabilidades e modularidade. A aplicação foi criada para fornecer um modelo base para a construção de APIs escaláveis e de fácil manutenção.
+
+Ao longo do projeto, são aplicados conceitos de DDD, como a organização do código em camadas, o uso de entidades, agregados e repositórios, além de exemplos práticos de como gerenciar dados e realizar operações de CRUD. Com essa estrutura, é possível adicionar facilmente novas funcionalidades, respeitando os princípios de coesão e baixo acoplamento.
 
 ---
 
 ## Índice
 
-- [Visão Geral](#visão-geral)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Instalação](#instalação)
-- [Como Usar](#como-usar)
-- [Estrutura de Diretórios](#estrutura-de-diretórios)
-- [Configuração](#configuração)
-- [Contribuições](#contribuições)
-- [Licença](#licença)
-- [Contato](#contato)
+- Visão Geral
+- Tecnologias Utilizadas
+- Instalação
+- Como Usar
+- Estrutura de Diretórios
+- Configuração
+- Contribuições
+- Licença
+- Contato
 
 ---
 
 ## Visão Geral
 
-Este projeto visa [explicar em poucas palavras o propósito do software e o valor que ele agrega]. Ele oferece as seguintes funcionalidades principais:
+Este projeto oferece uma API simples para demonstrar a aplicação de **Domain-Driven Design (DDD)** com **.NET 6**. Ele foi desenvolvido com foco na separação de responsabilidades e modularidade, facilitando a manutenção e escalabilidade da aplicação. As funcionalidades principais incluem:
 
-- **Funcionalidade 1**: [Descrição breve da funcionalidade]
-- **Funcionalidade 2**: [Descrição breve da funcionalidade]
-- **Funcionalidade 3**: [Descrição breve da funcionalidade]
-
-A arquitetura do projeto segue [exemplo: Domain-Driven Design (DDD)], o que garante [benefícios como flexibilidade, escalabilidade, etc.].
+- **Cadastro de Entidades**: Funcionalidade para criação e gerenciamento de recursos.
+- **Consulta de Dados**: Endpoints para obter informações de entidades.
+- **Autenticação e autorização**: Proteção de rotas por meio de autenticação de usuários.
 
 ---
 
@@ -34,9 +34,10 @@ A arquitetura do projeto segue [exemplo: Domain-Driven Design (DDD)], o que gara
 
 Este projeto foi desenvolvido com as seguintes tecnologias:
 
-- **Tecnologia 1**: [Descrição da tecnologia 1, ex: .NET 8, Java, etc.]
-- **Tecnologia 2**: [Descrição da tecnologia 2, ex: RabbitMQ, MySQL, etc.]
-- **Tecnologia 3**: [Descrição da tecnologia 3, ex: Docker, Kubernetes, etc.]
+- **.NET 6**: Framework para criação de APIs robustas e performáticas.
+- **Entity Framework Core**: ORM para acesso a banco de dados.
+- **Swagger**: Para documentação e testes interativos da API.
+- **Docker** (opcional): Para facilitar a containerização e o deploy da aplicação.
 
 ---
 
@@ -46,17 +47,15 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 
 Certifique-se de que você tem as seguintes ferramentas instaladas em seu ambiente de desenvolvimento:
 
-- **Ferramenta 1**: [Link para o download ou instrução de instalação]
-- **Ferramenta 2**: [Link para o download ou instrução de instalação]
+- **.NET 6 SDK**: [Baixe o .NET 6](https://dotnet.microsoft.com/download/dotnet/6.0)
+- **Docker** (opcional): [Baixe o Docker](https://www.docker.com/get-started)
 
 ### Passos para Instalar
 
 1. Clone o repositório:
 
-   ```bash
-   git clone https://github.com/seu-usuario/nome-do-projeto.git
-   cd nome-do-projeto
-   ```
+   git clone https://github.com/seu-usuario/WebApiMinimal.git
+   cd WebApiMinimal
 
 2. Instale as dependências do projeto:
 
@@ -64,92 +63,90 @@ Certifique-se de que você tem as seguintes ferramentas instaladas em seu ambien
 
    Ou, se estiver utilizando a linha de comando, execute:
 
-   ```bash
    dotnet restore
-   ```
 
-3. [Instrução de configuração, ex: configurar o banco de dados, variáveis de ambiente, etc.]
+3. Configure as variáveis de ambiente ou edite o arquivo `appsettings.json` conforme necessário.
 
 4. Para rodar o projeto localmente, use o seguinte comando:
 
-   ```bash
    dotnet run
-   ```
 
    Ou, se estiver usando containers Docker, execute:
 
-   ```bash
    docker-compose up
-   ```
 
 ---
 
 ## Como Usar
 
-Este projeto pode ser utilizado para [explicar de forma prática como o usuário pode interagir com o sistema]. Exemplos de uso:
+Este projeto pode ser utilizado para interagir com a API de forma simples. Abaixo estão alguns exemplos de uso com **cURL** ou **Postman**:
 
-1. **Endpoint 1**:
-   - **Método HTTP**: GET/POST
-   - **URL**: `/api/exemplo`
-   - **Descrição**: [Breve descrição do que esse endpoint faz]
-   
-2. **Endpoint 2**:
-   - **Método HTTP**: GET/POST
-   - **URL**: `/api/exemplo/{id}`
-   - **Descrição**: [Breve descrição do que esse endpoint faz]
+1. **Cadastro de Entidade**:
+   - **Método HTTP**: POST
+   - **URL**: /api/entidade
+   - **Descrição**: Cria uma nova entidade no sistema.
+
+2. **Consulta de Entidade**:
+   - **Método HTTP**: GET
+   - **URL**: /api/entidade/{id}
+   - **Descrição**: Retorna os detalhes de uma entidade específica.
 
 ### Exemplos de uso com cURL ou Postman
 
-**Requisição de exemplo**:
+**Requisição para cadastrar uma entidade**:
 
-```bash
-curl -X GET http://localhost:5000/api/exemplo -H "Content-Type: application/json"
-```
+curl -X POST http://localhost:5000/api/entidade -H "Content-Type: application/json" -d '{"nome": "Entidade Exemplo"}'
+
+**Requisição para consultar uma entidade**:
+
+curl -X GET http://localhost:5000/api/entidade/1 -H "Content-Type: application/json"
 
 ---
 
 ## Estrutura de Diretórios
 
-A estrutura do projeto segue uma organização modular e de fácil manutenção:
+Este projeto segue a arquitetura **Domain-Driven Design (DDD)** com uma estrutura simples e modular:
 
 ```
 src/
 ├── API/                # Camada de apresentação (controladores e endpoints da API)
-├── Application/        # Camada de lógica de negócios
-├── Domain/             # Camada de domínio (entidades e interfaces)
-├── Infrastructure/     # Camada de infraestrutura (conexões com banco, serviços, etc.)
-├── Shared/             # Camada compartilhada (DTOs, helpers, etc.)
+├── Application/        # Camada de lógica de negócios (serviços, casos de uso)
+├── Domain/             # Camada de domínio (entidades, agregados, repositórios)
+├── Infrastructure/     # Camada de infraestrutura (implementações concretas, banco de dados)
+└── Shared/             # Camada compartilhada (DTOs, helpers, interfaces)
 ```
+
+### Detalhamento das Camadas:
+
+- **API**: Contém os controladores que expõem os endpoints da API.
+- **Application**: Contém os serviços de aplicação, responsáveis pela lógica de negócios.
+- **Domain**: Contém as entidades, agregados e interfaces de repositório.
+- **Infrastructure**: Implementações concretas como acesso a banco de dados e outros serviços externos.
+- **Shared**: Contém classes compartilhadas, como DTOs e utilitários.
 
 ---
 
 ## Configuração
 
-Este projeto exige algumas configurações adicionais, como variáveis de ambiente, arquivos de configuração ou serviços externos. As instruções de configuração podem ser encontradas abaixo:
+Este projeto exige algumas configurações adicionais, como variáveis de ambiente ou arquivos de configuração. Abaixo estão as instruções de configuração:
 
 ### Configuração do Banco de Dados
 
 1. No arquivo `appsettings.json`, adicione suas configurações de banco de dados, por exemplo:
 
-```json
+```
 {
-  "DatabaseSettings": {
-    "ConnectionString": "mongodb://localhost:27017",
-    "DatabaseName": "MeuBancoDeDados"
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Database=webapi_db;Trusted_Connection=True;"
   }
 }
 ```
 
 2. Para configuração de variáveis de ambiente, adicione as seguintes variáveis ao seu ambiente de execução:
 
-```bash
-DATABASE_URL=mongodb://localhost:27017
-SECRET_KEY=alguma_chave_secreta
 ```
-
-### Configuração de API Externa (se necessário)
-
-Caso o projeto dependa de APIs externas, configure as credenciais ou chaves de acesso no arquivo de configuração.
+DATABASE_URL=Server=localhost;Database=webapi_db;Trusted_Connection=True;
+```
 
 ---
 
@@ -167,7 +164,7 @@ Contribuições são bem-vindas! Para contribuir com o projeto, siga estas etapa
 
 ## Licença
 
-Este projeto está licenciado sob a Licença [Nome da Licença, ex: MIT]. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
+Este projeto está licenciado sob a Licença **MIT**. Consulte o arquivo LICENSE para mais detalhes.
 
 ---
 
@@ -175,6 +172,6 @@ Este projeto está licenciado sob a Licença [Nome da Licença, ex: MIT]. Consul
 
 Caso tenha dúvidas ou sugestões, entre em contato:
 
-- **Email**: [contato@dominio.com](mailto:contato@dominio.com)
-- **LinkedIn**: [https://www.linkedin.com/in/usuario](https://www.linkedin.com/in/usuario)
-- **GitHub**: [https://github.com/usuario](https://github.com/usuario)
+- **Email**: contato@dominio.com
+- **LinkedIn**: https://www.linkedin.com/in/usuario
+- **GitHub**: https://github.com/usuario
